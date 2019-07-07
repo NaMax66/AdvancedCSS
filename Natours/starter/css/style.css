@@ -52,11 +52,13 @@ body {
     top: 40%; /*эти настройки связаны с родительским элементом*/
     left: 50%;
     transform: translate(-50%, -50%);/*связано с смещаем центр текстбокса для выравнивания*/
+    text-align: center; /*выравнивает текст по центру текстбокса*/
 }
 .heading-primary{
     color: #fff;
     text-transform: uppercase;
     backface-visibility: hidden; /*нужно чтобы анимация в конце не тряслась - костыль такой*/
+    margin-bottom: 60px; /*отступ снизу*/
 }
 
 .heading-primary-main{
@@ -111,4 +113,30 @@ body {
         opacity: 1;
         transform: translate(0);
     }
+}
+
+.btn:link, /*lik is a state of the btn selector*/
+.btn:visited { /*это нужно чтобы кнопка не меняла цвет после нажатия*/
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px; /*первое для верха и низа, второе для лево право*/
+    display: inline-block; /*чтобы границы не заезжали на другие элементы*/
+    border-radius: 100px; /*делаем кнопку круглой*/
+    transition: all .2s; /*все свойства могут быть анимированны*/
+}
+
+.btn:hover { /*hover - это псевдокласс - состояние класса btn когда навели на элемент*/
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
+}
+
+.btn:active { /*это когда нажали... always related to the initial link state*/
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
+
+}
+
+.btn-white{
+    background-color: #fff;
+    color: #777;
 }
