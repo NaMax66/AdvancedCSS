@@ -27,8 +27,8 @@ body {
 .header {
     height: 95vh; /* 95 процентов от экрана, снизу остается полоска*/
     background-image: linear-gradient(to right bottom,
-    #7ed56fc4,
-    #28b485ce),
+    #7ed56f8a,
+    #28b485a4),
     url(../img/hero.jpg); /*добавили градиент*/
     background-size: cover;
     background-position: top; /*we can see always the bottom side of the picture when we change the brouser size*/
