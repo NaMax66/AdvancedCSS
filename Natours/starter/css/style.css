@@ -15,13 +15,18 @@ todo: добавить плагин для отображения цветов
     box-sizing: border-box; 
 }
 
+html {
+    font-size: 62.5%; /*это нужно чтобы остальные значения сделать ram
+                        поумолчанию тут 16px но это переписывает св-ва по умолчанию браузера    100% - это 16 пикс по умолчанию*/
+}
+
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /*font-size: 16px;*/
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3rem;
 }
 
 .header {
@@ -39,12 +44,12 @@ body {
 }
 .logo-box{
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo{
-    height: 35px;
+    height: 3.5rem;
 }
 
 .text-box{
@@ -58,14 +63,14 @@ body {
     color: #fff;
     text-transform: uppercase;
     backface-visibility: hidden; /*нужно чтобы анимация в конце не тряслась - костыль такой*/
-    margin-bottom: 60px; /*отступ снизу*/
+    margin-bottom: 6rem; /*отступ снизу*/
 }
 
 .heading-primary-main{
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
     animation-name: moveInLeft;
     animation-duration: 1s;
    /* animation-delay: 1s;*/
@@ -77,20 +82,20 @@ body {
 /*в этом блоке описание анимации короче*/
 .heading-primary-sub{
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 13.4px; /*пространство между буквами*/
+    letter-spacing: 1.75rem; /*пространство между буквами*/
     animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInLeft { /*применяется в анимации h1*/
     0%{
         opacity: 0;
-        transform: translateX(-100px)  
+        transform: translateX(-10rem)  
     }
 
     80%{
-        transform: translateX(10px) ;
+        transform: translateX(1rem) ;
     }
 
     100%{
@@ -102,11 +107,23 @@ body {
 @keyframes moveInRight { /*применяется в анимации h1*/
     0%{
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80%{
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+/*Эта анимация срабатывает правильно из-за animation-fill-mode*/
+@keyframes moveInBottom { /*применяется в анимации h1*/
+    0%{
+        opacity: 0;
+        transform: translateY(3rem);
     }
 
     100%{
@@ -119,24 +136,53 @@ body {
 .btn:visited { /*это нужно чтобы кнопка не меняла цвет после нажатия*/
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px; /*первое для верха и низа, второе для лево право*/
+    padding: 1.5rem 4rem; /*первое для верха и низа, второе для лево право*/
     display: inline-block; /*чтобы границы не заезжали на другие элементы*/
-    border-radius: 100px; /*делаем кнопку круглой*/
+    border-radius: 10rem; /*делаем кнопку круглой*/
     transition: all .2s; /*все свойства могут быть анимированны*/
+    position: relative; /*добавляем - чтобы сделать эффект с after*/
+    font-size: 1.6rem;
 }
 
 .btn:hover { /*hover - это псевдокласс - состояние класса btn когда навели на элемент*/
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1); /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
+    font-weight: 700;
 }
 
 .btn:active { /*это когда нажали... always related to the initial link state*/
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1); /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
 
 }
 
 .btn-white{
     background-color: #fff;
     color: #777;
+}
+
+.btn::after{ /*идея в том, чтобы добавить такую же кнопку after - like a btn's chield*/
+    content: attr(); /*если здесь оставить "" - текст в кнопке при зим жирности прыгает*/
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /*позиция за основной кнопкой*/
+    transition: all .4s;
+}
+.btn-white::after{
+    background-color: #fff;
+}
+
+.btn:hover::after{ /*делаем кнопку на заднем плане больше*/
+    transform: scaleX(1.4) scaleY(1.6); /*меняем размер*/
+    opacity: 0;
+}
+
+.btn-animated{
+    animation: moveInBottom .5s ease-out .75s; /*последнее - задержка анима*/
+    animation-fill-mode: backwards; /*автоматически отключает стили перед началом анимации*/
 }
