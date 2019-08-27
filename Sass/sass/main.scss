@@ -1,32 +1,21 @@
-/*
-COLORS:
-
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
-
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
 
 $color-grey-dark: #777;
 $color-white: #fff;
+$color-black: #000;
 
 *::after,
 *::before {
-  /*универсальный селектор*/
   margin: 0;
-  /*no margins or pedding brouser can add*/
   padding: 0;
   box-sizing: inherit;
 }
 
 html {
+  /*это нужно чтобы остальные значения сделать ram. 100% - это 16 пикс по умолчанию в браузере*/
   font-size: 62.5%;
-  /*это нужно чтобы остальные значения сделать ram
-                      поумолчанию тут 16px но это переписывает св-ва по умолчанию браузера    100% - это 16 пикс по умолчанию*/
 }
 
 body {
@@ -40,80 +29,84 @@ body {
 }
 
 .header {
-  height: 95vh;
   /* 95 процентов от экрана, снизу остается полоска*/
+  height: 95vh;
+
+  /*добавили градиент*/
   background-image: linear-gradient(to right bottom,
           rgba($color-primary-light, 0.8),
           rgba($color-primary-dark, 0.8)),
   url(../img/hero.jpg);
-  /*добавили градиент*/
   background-size: cover;
-  background-position: top;
+
   /*we can see always the bottom side of the picture when we change the browser size*/
-  position: relative;
+  background-position: top;
+
   /*добавили для класса logo-box*/
-  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  position: relative;
+
   /*делает обрезку гельятина. координаты в процентах по часовой стрелке*/
   /*vh меняет видимость объекта в зависимости от высоты окна*/
-}
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
+  /*значёк в  виде короны*/
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
 
-.header__logo {
-  height: 3.5rem;
-}
+  &__logo {
+    height: 3.5rem;
+  }
 
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  /*эти настройки связаны с родительским элементом*/
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /*связано с смещаем центр текстбокса для выравнивания*/
-  text-align: center;
-  /*выравнивает текст по центру текстбокса*/
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    /*эти настройки связаны с родительским элементом*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*связано с смещаем центр текстбокса для выравнивания*/
+    text-align: center;
+    /*выравнивает текст по центру текстбокса*/
+  }
 }
 
 .heading-primary {
   color: $color-white;
   text-transform: uppercase;
-  backface-visibility: hidden;
+
   /*нужно чтобы анимация в конце не тряслась - костыль такой*/
-  margin-bottom: 6rem;
+  backface-visibility: hidden;
+
   /*отступ снизу*/
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* animation-delay: 1s;*/
+    /*animation-iteration-count: 3;*/
+
+    /*начинается быстрее, заканч медленнее*/
+    animation-timing-function: ease-out;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out;
+  }
 }
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  /* animation-delay: 1s;*/
-  /*animation-iteration-count: 3;*/
-  animation-timing-function: ease-out;
-  /*начинается быстрее, заканч медленнее*/
-}
-
-
-/*в этом блоке описание анимации короче*/
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  /*пространство между буквами*/
-  animation: moveInRight 1s ease-out;
-}
-
+/*применяется в анимации h1*/
 @keyframes moveInLeft {
-  /*применяется в анимации h1*/
   0% {
     opacity: 0;
     transform: translateX(-10rem)
@@ -128,7 +121,6 @@ body {
 }
 
 @keyframes moveInRight {
-  /*применяется в анимации h1*/
   0% {
     opacity: 0;
     transform: translateX(10rem);
@@ -142,10 +134,8 @@ body {
   }
 }
 
-
 /*Эта анимация срабатывает правильно из-за animation-fill-mode*/
 @keyframes moveInBottom {
-  /*применяется в анимации h1*/
   0% {
     opacity: 0;
     transform: translateY(3rem);
@@ -156,80 +146,85 @@ body {
   }
 }
 
-.btn:link, /*link is a state of btn selector*/
-.btn:visited /*if already clicked*/
-{
-  /*это нужно чтобы кнопка не меняла цвет после нажатия*/
-  text-transform: uppercase;
-  text-decoration: none;
+.btn {
+  &:link, /*link is a state of btn selector*/
+  &:visited /*if already clicked*/
+  {
+    /*это нужно чтобы кнопка не меняла цвет после нажатия*/
+    text-transform: uppercase;
+    text-decoration: none;
 
-  /*первое для верха и низа, второе для лево право*/
-  padding: 1.5rem 4rem;
+    /*первое для верха и низа, второе для лево право*/
+    padding: 1.5rem 4rem;
 
-  /*если мы хотим использовать паддинг и марджин нужно использовать этот display*/
-  //inline-block ведет себя как текст
-  display: inline-block;
-  border-radius: 10rem;
+    /*если мы хотим использовать паддинг и марджин нужно использовать этот display*/
+    //inline-block ведет себя как текст
+    display: inline-block;
+    border-radius: 10rem;
 
-  /*все свойства могут быть анимированны*/
-  transition: all .2s;
-  position: relative;
-  /*добавляем - чтобы сделать эффект с after*/
-  font-size: 1.6rem;
-}
+    /*все свойства могут быть анимированны*/
+    transition: all .2s;
+    position: relative;
+    /*добавляем - чтобы сделать эффект с after*/
+    font-size: 1.6rem;
+  }
 
-.btn:hover {
-  /*hover - это псевдокласс - состояние класса btn когда навели на элемент*/
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
-  /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
-  font-weight: 700;
-}
+  &:hover {
+    /*hover - это псевдокласс - состояние класса btn когда навели на элемент*/
+    transform: translateY(-3px);
 
-.btn:active {
-  /*это когда нажали... always related to the initial link state*/
-  transform: translateY(-1px);
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-  /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
-}
+    /*сдвиг тени по x, y,размытие, цвет и прозрачность*/
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
+    font-weight: 700;
+  }
 
-.btn--white {
-  background-color: $color-white;
-  color: $color-grey-dark;
-}
-/*это фактически новый элемент*/
-.btn::after {
-  /*идея в том, чтобы добавить такую же кнопку но нужно определить контент*/
-  content: ""; //без этого не работает
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute; //чтобы поместить за кнопкой, для этого позицию основного элемента нужно сделать relative
-  top: 0;
-  left: 0;
-  z-index: -1;
-  /*позиция за основной кнопкой*/
-  transition: all .4s;
-}
+  &:active {
+    /*always related to the initial link state*/
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+  }
 
-.btn--white::after {
-  background-color: $color-white;
-}
-//читается так: когда мы наводим на кнопку - мы хотим этот стиль для ее копии after
-.btn:hover::after {
-  /*делаем кнопку на заднем плане больше*/
-  transform: scaleX(1.4) scaleY(1.8);
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
 
-  //прячем кнопку
-  opacity: 0;
-}
+    &::after {
+      background-color: $color-white;
+    }
+  }
 
-.btn--animated {
+  /*это фактически новый элемент*/
+  &::after {
+    /*идея в том, чтобы добавить такую же кнопку но нужно определить контент*/
+    content: ""; //без этого не работает
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute; //чтобы поместить за кнопкой, для этого позицию основного элемента нужно сделать relative
+    top: 0;
+    left: 0;
 
-  //движеение кнопки начнем на 750 мс позже остальной
-  animation: moveInBottom .5s ease-out .75s;
+    /*позиция за основной кнопкой*/
+    z-index: -1;
+    transition: all .4s;
+  }
 
-  /*автоматически выставляет значение анимации 0 перед началом*/
-  animation-fill-mode: backwards;
+  //читается так: когда мы наводим на кнопку - мы хотим этот стиль для ее копии after
+  &:hover::after {
+    /*делаем кнопку на заднем плане больше*/
+    transform: scaleX(1.4) scaleY(1.8);
+
+    //прячем кнопку
+    opacity: 0;
+  }
+
+  &--animated {
+
+    //движеение кнопки начнем на 750 мс позже остальной
+    animation: moveInBottom .5s ease-out .75s;
+
+    /*автоматически выставляет значение анимации 0 перед началом*/
+    animation-fill-mode: backwards;
+  }
 }

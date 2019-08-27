@@ -1,3 +1,4 @@
 # AdvancedCSS
-Here is a sandbox for my udemy course: Advanced CSS and Sass
-I want to know how to reverse commits
+>Here is a sandbox for my Udemy course: Advanced CSS and Sass
+
+
