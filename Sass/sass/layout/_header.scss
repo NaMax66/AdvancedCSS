@@ -1,0 +1,44 @@
+.header {
+  /* 95 процентов от экрана, снизу остается полоска*/
+  height: 95vh;
+
+  /*добавили градиент*/
+  background-image: linear-gradient(to right bottom,
+          rgba($color-primary-light, 0.8),
+          rgba($color-primary-dark, 0.8)),
+  url(../img/hero.jpg);
+  background-size: cover;
+
+  /*we can see always the bottom side of the picture when we change the browser size*/
+  background-position: top;
+
+  /*добавили для класса logo-box*/
+  position: relative;
+
+  /*делает обрезку гельятина. координаты в процентах по часовой стрелке*/
+  /*vh меняет видимость объекта в зависимости от высоты окна*/
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+
+  /*значёк в  виде короны*/
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    /*эти настройки связаны с родительским элементом*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*связано с смещаем центр текстбокса для выравнивания*/
+    text-align: center;
+    /*выравнивает текст по центру текстбокса*/
+  }
+}
+
