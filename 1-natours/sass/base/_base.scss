@@ -1,0 +1,15 @@
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  /*это нужно чтобы остальные значения сделать ram. 100% - это 16 пикс по умолчанию в браузере*/
+  /*по сути мы устанавливаем значение rem в 10px*/
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
