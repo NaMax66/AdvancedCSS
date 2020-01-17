@@ -396,15 +396,19 @@
     margin-right: .7rem;
 
     // older browsers
-    //background-image: url(../img/chevron-thin-right.svg);
-    //background-size: cover;
+    background-image: url(../img/chevron-thin-right.svg);
+    background-size: cover;
 
     // newer browsers - masks
-    background-color: var(--color-primary);
-    -webkit-mask-image: url(../img/chevron-thin-right.svg);
-    -webkit-mask-size: cover; //позволяет вписать картинку в блок
-    mask-image: url(../img/chevron-thin-right.svg);
-    mask-size: cover; //позволяет вписать картинку в блок
+    @supports (-webkit-mask-image: url(../img))  or (mask-image: url(../img)) {
+      background-color: var(--color-primary);
+      -webkit-mask-image: url(../img/chevron-thin-right.svg);
+      -webkit-mask-size: cover; //позволяет вписать картинку в блок
+      mask-image: url(../img/chevron-thin-right.svg);
+      mask-size: cover; //позволяет вписать картинку в блок
+      background-image: none;
+    }
+
   }
 }
 
