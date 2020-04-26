@@ -537,6 +537,9 @@ body {
     line-height: 1; }
   .popup__close:hover {
     color: #55c57a; }
+  .popup:target .popup__content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); }
   .popup__content {
     position: absolute;
     top: 50%;
@@ -548,7 +551,8 @@ body {
     display: table;
     overflow: hidden;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5); }
+    transform: translate(-50%, -50%) scale(0.25);
+    transition: all .3s .2s; }
   .popup__left {
     width: 33.333333%;
     display: table-cell; }
